@@ -7,6 +7,7 @@ use poise::serenity_prelude as serenity;
 
 pub struct Data {
     pub db: sqlx::SqlitePool,
+    pub topics: Vec<String>,
 }
 
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
@@ -31,16 +32,25 @@ async fn main() {
         .await
         .expect("database migration failed");
 
+    let topics_config = feeds::load_topics("topics.toml").expect("failed to load topics.toml");
+    let topics: Vec<String> = topics_config.into_keys().collect();
+
     let framework = poise::Framework::builder()
         .options(poise::FrameworkOptions {
-            commands: vec![commands::ping::ping()],
+            commands: vec![
+                commands::ping::ping(),
+                commands::subscribe::subscribe(),
+                commands::unsubscribe::unsubscribe(),
+                commands::topics::topics(),
+            ],
             ..Default::default()
         })
         .setup(move |ctx, _ready, framework| {
             let pool = pool.clone();
+            let topics = topics.clone();
             Box::pin(async move {
                 poise::builtins::register_globally(ctx, &framework.options().commands).await?;
-                Ok(Data { db: pool })
+                Ok(Data { db: pool, topics })
             })
         })
         .build();
