@@ -1,0 +1,35 @@
+# Source URLs per topic.
+# Add or remove feeds here without touching the code.
+
+[cybersecurity]
+feeds = [
+    "https://feeds.feedburner.com/TheHackersNews",
+    "https://www.bleepingcomputer.com/feed/",
+    "https://krebsonsecurity.com/feed/",
+]
+
+[ai]
+feeds = [
+    "https://feeds.feedburner.com/AIWeekly",
+    "https://huggingface.co/blog/feed.xml",
+    "https://openai.com/blog/rss.xml",
+]
+
+[microelectronics]
+feeds = [
+    "https://www.eetimes.com/rss/",
+    "https://semiengineering.com/feed/",
+    "https://www.anandtech.com/rss/",
+]
+
+[geopolitics]
+feeds = [
+    "https://www.techpolicy.press/feed/",
+    "https://restofworld.org/feed/",
+]
+
+[finance]
+feeds = [
+    "https://feeds.bloomberg.com/technology/news.rss",
+    "https://www.coindesk.com/arc/outboundfeeds/rss/",
+]

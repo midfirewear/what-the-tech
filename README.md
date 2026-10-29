@@ -1,8 +1,6 @@
-# what-the-tech 🔭
+# what-the-tech
 
-> A Discord bot for tech enthusiasts who want to stay informed — without the noise.
-
-**what-the-tech** monitors curated sources (RSS feeds, public APIs, newsletters) across key tech domains and delivers digests directly into your Discord server. Users subscribe to the topics they care about via slash commands.
+A Discord bot for tech watching. It monitors RSS feeds and public APIs across a set of curated topics and posts new items to subscribed channels.
 
 ---
 
@@ -21,9 +19,9 @@
 ## How it works
 
 1. A user runs `/subscribe ai cybersecurity` in a Discord channel
-2. The bot registers their preferences in a local SQLite database
-3. Every hour, the bot fetches new items from RSS feeds and APIs for each active topic
-4. New items are posted to the subscribed channels as clean embeds
+2. The bot stores their preferences in a local SQLite database
+3. Every hour, the bot fetches new items from configured sources for each active topic
+4. New items are posted to the subscribed channels as embeds
 
 ---
 
@@ -31,12 +29,12 @@
 
 | Layer | Choice | Why |
 |-------|--------|-----|
-| Language | [Rust](https://www.rust-lang.org/) | Performance, reliability, learning opportunity |
-| Discord framework | [poise](https://github.com/serenity-rs/poise) | Built on serenity, great slash command support |
+| Language | [Rust](https://www.rust-lang.org/) | Performance, safety, learning opportunity |
+| Discord framework | [poise](https://github.com/serenity-rs/poise) | Built on serenity, clean slash command support |
 | Database | SQLite via [sqlx](https://github.com/launchbadge/sqlx) | Lightweight, no external server needed |
 | RSS parsing | [feed-rs](https://github.com/feed-rs/feed-rs) | Handles RSS, Atom, JSON Feed |
-| HTTP client | [reqwest](https://github.com/seanmonstar/reqwest) | Async, ergonomic |
-| Scheduling | [tokio](https://tokio.rs/) tasks | Native async runtime, no extra scheduler |
+| HTTP client | [reqwest](https://github.com/seanmonstar/reqwest) | Async, well maintained |
+| Scheduling | [tokio](https://tokio.rs/) tasks | Native async runtime |
 
 ---
 
@@ -63,8 +61,7 @@ what-the-tech/
 ### Prerequisites
 
 - [Rust](https://rustup.rs/) (stable)
-- A Discord bot token ([guide](https://discordpy.readthedocs.io/en/stable/discord.html))
-- SQLite (bundled via sqlx, no install needed)
+- A Discord bot token ([Discord developer portal](https://discord.com/developers/applications))
 
 ### Setup
 
@@ -72,7 +69,7 @@ what-the-tech/
 git clone https://github.com/midfirewear/what-the-tech
 cd what-the-tech
 cp .env.example .env
-# Fill in DISCORD_TOKEN in .env
+# fill in DISCORD_TOKEN in .env
 cargo run
 ```
 
@@ -80,12 +77,10 @@ cargo run
 
 ## Contributing
 
-This project is built step by step, with readability as a priority. Each feature is introduced in its own commit with a clear message explaining the architectural choice.
-
-PRs welcome — open an issue first to discuss the approach.
+Each feature is built on its own branch with a clear commit message. Open an issue before sending a PR.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT
